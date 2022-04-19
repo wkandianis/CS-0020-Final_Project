@@ -19,24 +19,43 @@
 
     $result = $conn->query($sql);
     
-    //get results
-   
-    
-    $i = 0;
-	
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-			
-               
-				
-     }
-    } 
 
-    else 
-        echo "no results";
+   // add new user
+    $sql = "INSERT INTO users (fname, lname, username, pwd, email, loc)
+    VALUES ('$fname', '$lname','$username','$pwd','$email','$loc')";
+    
+
+    $result = $conn->query($sql);
+    if ($result === TRUE) {
+      echo "New record created successfully";
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
  
-    //close the connection
+
+
+
+
+    // get data from table 
+   $sql = "SELECT pwd, loc FROM users WHERE username = $username";
+   
+   $result = $conn->query($sql);
+    if ($result === FALSE) {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+   }
+   
+   if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      echo $row["pwd"];
+      echo $row["loc"];
+
+    }
+
+   }
     $conn->close();
 
+
+
+  
   ?>
 
