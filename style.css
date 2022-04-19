@@ -1,0 +1,179 @@
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+header {
+	text-align: right;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 10px 10px 0 0;
+}
+#logout {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	color: white;
+	border: none;
+	background: none;
+	font-size: 15px;
+	font-weight: 600;
+	text-shadow: 0px 1px 4px rgba(0,0,0,0.4);
+}
+#logout:hover {
+	color: rgba(225,225,225,1.00);
+}
+h1 {
+	margin: 0;
+	padding: 30px 0 0;
+	color: white;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	font-size: 60px;
+	text-shadow: 0px 5px 4px rgba(0,0,0,0.4);
+}
+h2 {
+	margin: 30px 0 0;
+	color: white;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	font-size: 25px;
+	font-weight: 100;
+	text-shadow: 0px 3px 4px rgba(0,0,0,0.4);
+}
+div {
+	text-align: center;
+}
+#main {
+	background-image: url("background.jpg")/*url("nighttime.png")*//*url("cloudy.webp")*/;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-bottom: 30px;
+}
+@font-face {
+	font-family: "Akshar";
+	src: url("Akshar-VariableFont_wght.ttf") format("truetype");
+}
+#weather {
+	margin: 10px auto 0;
+	border: rgba(41,63,75,1.00) solid 2px;
+	border-radius: 15px;
+	background-color: /*rain/cloudy rgba(90,118,139,1.00)*/rgba(139, 185, 212, 1)/* nightrgba(41,63,75,1.00)*/;
+	width: 500px;
+	color: white;
+	font-family: "Akshar", "Times New Roman", "serif";
+	font-weight: 100;
+	text-shadow: 0px 3px 4px rgba(0,0,0,0.4);
+}
+#city {
+	font-family: "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	border-radius: 20px 0 0 20px;
+	border: 2px solid rgba(40,40,40,1.00);
+	border-right: 1px solid rgba(77,77,77,1.00) !important;
+	padding-left: 8px;
+}
+input:focus {
+    outline-width: 0;
+}
+#enter {
+	border-radius: 0 20px 20px 0;
+	border: 2px solid rgba(40,40,40,1.00);
+	border-left: 0 !important;
+}
+#enter:hover {
+	background-color: rgba(215,215,215,1.00);
+}
+#curr_city {
+	font-size: 60px;
+	padding: 15px 0 15px;
+}
+#row1 {
+	height: 115px;
+}
+#temp {
+	font-size: 90px;
+	display: inline-block;
+	padding-right: 50px;
+}
+#conditions {
+	display: inline-block;
+	font-size: 80px;
+	position: relative;
+	padding-left: 50px;
+}
+#row2 {
+	padding-top: 10px;
+}
+#feels {
+	font-size: 40px;
+	display: inline-block;
+	padding-right: 20px;
+}
+#temp2 {
+	font-size: 70px;
+	display: inline-block;
+	padding-left: 20px;
+}
+h3 {
+	color: white;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	font-size: 40px;
+	text-shadow: 0px 4px 4px rgba(0,0,0,0.4);
+	margin-bottom: 10px;
+}
+#recommendations {
+	color: black;
+	font-family: "Akshar", "Times New Roman", "serif";
+	font-size: 28px;
+	border: solid rgba(78,83,88,1.00) 2px;
+	background-color:rgba(250,250,250,1.00);
+	width: 500px;
+	margin: 0 auto;
+	border-radius: 15px;
+}
+#rec_text {
+	margin: 10px 15px;
+}
+footer {
+	text-align: center;
+	background-color: rgba(251,249,223,1.00);
+	border-top: 1px solid black;
+}
+.footbutton {
+	display: inline-block;
+	margin: 20px auto;
+	background-color: rgba(98,126,174,1.00);
+	width: 200px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	font-size: 30px;
+	color: white;
+	border: solid black 2px;
+	border-radius: 20px;
+}
+footer a {
+	text-decoration: none;
+	margin: 0 20px;
+}
+@media screen and (max-width: 530px) {
+	#weather {
+		width: 380px;
+	}
+	#recommendations {
+		width: 380px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
