@@ -10,7 +10,7 @@
     <div id="container">
         <div id="form_container">
             <h2>Create an Account</h2>
-            <form>
+            <form method="POST" action="form.php">
                 <label for="uname">Username</label>
                 <input type="text" name="uname" required>
 
@@ -23,7 +23,7 @@
                 <label for="location">Specified Location (City):</label>
                 <input type="text" name="location" required>
                 
-                <button type="submit">Create Account</button>
+                <button type="submit" name="submit">Create Account</button>
             </form>
         </div>
     </div>
