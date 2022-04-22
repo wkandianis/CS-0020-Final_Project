@@ -152,6 +152,25 @@ footer a {
 	text-decoration: none;
 	margin: 0 20px;
 }
+#week a {
+	text-decoration: none;
+}
+.days {
+	height: 80px;
+	width: 60px;
+	margin: 20px 3px;
+	display: inline-block;
+	border: rgba(41,63,75,1.00) solid 2px;
+	border-radius: 15px;
+	background-color: /*rain/cloudy rgba(90,118,139,1.00)*/rgba(139, 185, 212, 1)/* nightrgba(41,63,75,1.00)*/;
+	color: white;
+	font-family: "Akshar", "Times New Roman", "serif";
+	font-weight: 100;
+	text-shadow: 0px 3px 4px rgba(0,0,0,0.4);
+}
+.days:hover {
+	opacity: 0.8;
+}
 @media screen and (max-width: 530px) {
 	#weather {
 		width: 380px;
