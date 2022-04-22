@@ -172,6 +172,10 @@ footer a {
 .days:hover {
 	opacity: 0.8;
 }
+.temp7 {
+	transform: translateY(20%);
+	font-size: 35px;
+}
 @media screen and (max-width: 530px) {
 	#weather {
 		width: 380px;
