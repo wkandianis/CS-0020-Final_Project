@@ -35,15 +35,17 @@
 
             $conn->select_db($db);
 
-            $sql = "SELECT loc FROM users WHERE username = $username AND pwd = $password";
+            $sql = "SELECT * FROM users WHERE username = '$username' AND pwd = '$password'";
             
         
             $result = $conn->query($sql);
-
+            
             if ($result->num_rows > 0) {
-                $location = $row["loc"];
+                while($row = $result->fetch_assoc()) {    
+                    $location = $row['loc'];
+                }
             } else {
-                echo "user does not exist";
+                echo "Invalid Credentials";
             }
             
             $conn->close();
@@ -57,8 +59,8 @@
 	<script>
     
     
-                var location = "<?php echo "$location"?>";
-                        
+                var myLocation = "<?php echo $location?>";
+                alert(myLocation);      
                 // Input is a string in the form of 'City, State'
                 function get_lat_long(input){
                     return new Promise(function(resolve, reject){
