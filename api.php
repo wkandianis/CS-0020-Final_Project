@@ -57,54 +57,78 @@
 
 
 	<script>
-    
-    
-                var myLocation = "<?php echo $location?>";
-                alert(myLocation);      
-                // Input is a string in the form of 'City, State'
-                function get_lat_long(input){
-                    return new Promise(function(resolve, reject){
-                        var geocoder = new google.maps.Geocoder();
-                        geocoder.geocode({ 'address': input}, function(results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                var coordinates = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
-                                resolve(coordinates);
-                            } else {
-                                reject(status)
-                            }
-                        });
-                    })
+        var myLocation = "<?php echo $location?>";
+        alert(myLocation);      
+        // Input is a string in the form of 'City, State'
+        function get_lat_long(input){
+            return new Promise(function(resolve, reject){
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'address': input}, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var coordinates = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+                        resolve(coordinates);
+                    } else {
+                        reject(status)
+                    }
+                });
+            })
+            
+        }
+
+        async function update_weather(coord) {
+            // 
+            // NOTICE!!!
+            // I HAVE REMOVED MY API KEY SO IT IS NOT PUBLIC ON GITHUB -- NEED TO FIGURE OUT HOW TO STORE SOMEWHERE SAFE AND IMPORT
+            // 
+            current = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + coord[0] + "&lon=" + coord[1] + "&appid={APIKEY}&units=imperial")
+                .then(current => current.text())
+                .then(data => {
+                    data = JSON.parse(data);
+                    temp = data.main.temp;
+                    feels_like = data.main.feels_like;
+                    city_name = data.name;
+                    description = data.weather.main;
+                    time_zone = data.timezone;
+
+                }).catch (error => console.log(error))
+            document.getElementById("curr_city").innerHTML = city_name;
+            document.getElementById("temp").innerHTML = temp + "&deg;F";
+            document.getElementById("temp2").innerHTML = feels_like + "&deg;F";
+
+            
+
+
+            weekly = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + coord[0] + "&lon=" + coord[1] + "&appid={APIKEY}&units=imperial")
+                .then(weekly => weekly.text())
+                .then(data => {
+                    data = JSON.parse(data);
+                    weekly_data = data.list;
                     
-                }
+                }).catch (error => console.log(error))
 
-                async function update_weather(coord) {
-                    // 
-                    // NOTICE!!!
-                    // I HAVE REMOVED MY API KEY SO IT IS NOT PUBLIC ON GITHUB -- NEED TO FIGURE OUT HOW TO STORE SOMEWHERE SAFE AND IMPORT
-                    // 
-                    res = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + coord[0] + "&lon=" + coord[1] + "&appid={APIKEY}&units=imperial")
-                        .then(res => res.text())
-                        .then(data => {
-                            data = JSON.parse(data);
-                            temp = data.main.temp;
-                            feels_like = data.main.feels_like;
-                            city_name = data.name;
-                            description = data.weather.main;
-                            time_zone = data.timezone;
+            
+            for (var i = 0; i < 5; i++) {
+                day_temp = weekly_data[i].main.temp;
+                document.getElementById("5day" + i).innerHTML = Math.round(day_temp) + "&deg;";
+            }
 
-                        }).catch (error => console.log(error))
-                    document.getElementById("curr_city").innerHTML = city_name;
-                    document.getElementById("temp").innerHTML = temp + "&deg;F";
-                    document.getElementById("temp2").innerHTML = feels_like + "&deg;F";
-                }
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
 
-                async function load_page(){
-                    update_weather(await get_lat_long("Seattle, WA"));
-                }
+            for (var i = 0; i < 5; i++) {
+                document.getElementById("date" + i).innerHTML = mm + '/' + (dd + i);
+            }
 
-                async function search_weather(input){
-                    update_weather(await get_lat_long(input));
-                }
+        }
+
+        async function load_page(){
+            update_weather(await get_lat_long("Seattle, WA"));
+        }
+
+        async function search_weather(input){
+            update_weather(await get_lat_long(input));
+        }
                     
 
     </script>
@@ -116,7 +140,7 @@
 		<h1>WeatherU</h1>
 		<h2>Current Weather in
 			<br>
-			<input id="city"><button id="enter" type="submit"><i class="fa fa-search"></i></button>
+			<input id='city'><button id="enter"><i class="fa fa-search"></i></button>
 		</h2>
 		<div id="weather">
 			<div id="data">
@@ -139,6 +163,14 @@
 				</div>
 			</div>
 		</div>
+		<div id="week">
+            <a href=""><div class="days"><div id='date0'>Today </div><div class="temp7" id="5day0">&deg;</div></div></a>
+			<a href=""><div class="days"><div id='date1'>Today </div><div class="temp7" id="5day1">&deg;</div></div></a>
+			<a href=""><div class="days"><div id='date2'>Today </div><div class="temp7" id="5day2">&deg;</div></div></a>
+			<a href=""><div class="days"><div id='date3'>Today </div><div class="temp7" id="5day3">&deg;</div></div></a>
+			<a href=""><div class="days"><div id='date4'>Today </div><div class="temp7" id="5day4">&deg;</div></div></a>
+		</div>
+
 		<div id="clothes">
 			<h3>What to wear:</h3>
 			<div id="recommendations">
@@ -157,5 +189,16 @@
 		</a>
 	</footer>
 </body>
-<script>load_page()</script>
+
+<script>
+    document.getElementById('enter').addEventListener('click', function (){
+
+        if (document.getElementById('city').value){
+            search_weather(document.getElementById('city').value)
+        }
+    });
+    
+</script>
+<script>search_weather("Mclean, VA")</script>
+
 </html>
