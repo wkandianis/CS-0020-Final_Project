@@ -120,6 +120,22 @@
                 document.getElementById("date" + i).innerHTML = mm + '/' + (dd + i);
             }
 
+            if (description == "Clear" && today.getHours() >= 19 && today.getHours() <= 6){
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-moon'></i>"
+            }else if (description == "Clear" && today.getHours() < 19 && today.getHours() > 6 ){
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-sun'></i>"
+            }else if (description == "Rain" || description == "Drizzle"){
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-cloud-showers-heavy'></i>"
+            }else if (description == "Snow")
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-snowflake'></i>"
+            }else if (description == "Clouds"){
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-cloud'></i>"
+            }else if (description == "Thunderstorm"){
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-cloud-bolt'></i>"
+            }else {
+                document.getElementById("conditions").innerHTML = "<i class='fa-solid fa-cloud-fog'></i>"
+            }
+
         }
 
         async function load_page(){
