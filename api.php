@@ -215,6 +215,6 @@
     });
     
 </script>
-<script>search_weather("Mclean, VA")</script>
+<script>search_weather(myLocation)</script>
 
 </html>
